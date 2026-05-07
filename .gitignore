@@ -1,0 +1,28 @@
+# Backend
+server/node_modules/
+server/.env
+server/.DS_Store
+server/*.log
+
+# Frontend
+client/node_modules/
+client/build/
+client/.env
+client/.DS_Store
+client/*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
