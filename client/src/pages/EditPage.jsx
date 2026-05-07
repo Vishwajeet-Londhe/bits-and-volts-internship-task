@@ -36,21 +36,20 @@ const EditPage = () => {
   ];
 
   useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        setInitialLoading(true);
+        const response = await userAPI.getUserById(id);
+        setFormData(response.data.data);
+      } catch (error) {
+        showError('Failed to fetch user');
+        navigate('/');
+      } finally {
+        setInitialLoading(false);
+      }
+    };
     fetchUser();
-  }, [id]);
-
-  const fetchUser = async () => {
-    try {
-      setInitialLoading(true);
-      const response = await userAPI.getUserById(id);
-      setFormData(response.data.data);
-    } catch (error) {
-      showError('Failed to fetch user');
-      navigate('/');
-    } finally {
-      setInitialLoading(false);
-    }
-  };
+  }, [id, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

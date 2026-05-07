@@ -13,21 +13,20 @@ const ViewPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        setLoading(true);
+        const response = await userAPI.getUserById(id);
+        setUser(response.data.data);
+      } catch (error) {
+        showError('Failed to fetch user');
+        navigate('/');
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchUser();
-  }, [id]);
-
-  const fetchUser = async () => {
-    try {
-      setLoading(true);
-      const response = await userAPI.getUserById(id);
-      setUser(response.data.data);
-    } catch (error) {
-      showError('Failed to fetch user');
-      navigate('/');
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [id, navigate]);
 
   if (loading) {
     return <Spinner />;
