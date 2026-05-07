@@ -15,7 +15,7 @@ npm install
 
 2. Configure environment variables in `.env`:
 ```env
-MONGODB_URI=mongodb://localhost:27017/user-management
+MONGODB_URI=mongodb://127.0.0.1:27017/user-management
 PORT=5000
 NODE_ENV=development
 JWT_SECRET=your_secret_key

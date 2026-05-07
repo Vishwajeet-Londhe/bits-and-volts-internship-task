@@ -115,7 +115,7 @@ npm install
 
 3. Create a `.env` file in the server directory:
 ```env
-MONGODB_URI=mongodb://localhost:27017/user-management
+MONGODB_URI=mongodb://127.0.0.1:27017/user-management
 PORT=5000
 NODE_ENV=development
 JWT_SECRET=your_jwt_secret_key_here
@@ -211,26 +211,3 @@ The application will open on `http://localhost:3000`
 ✅ Consistent File Structure  
 ✅ Professional UI/UX  
 ✅ Proper Naming Conventions  
-
-## Deployment
-
-### Deploy Backend (Heroku)
-1. Create Heroku account and install CLI
-2. Login: `heroku login`
-3. Create app: `heroku create your-app-name`
-4. Set environment variables: `heroku config:set MONGODB_URI=your_mongodb_uri`
-5. Deploy: `git push heroku main`
-
-### Deploy Frontend (Netlify)
-1. Build the project: `npm run build`
-2. Connect your repository to Netlify
-3. Set build command: `npm run build`
-4. Deploy
-
-## License
-
-This project is open source and available under the MIT License.
-
-## Author
-
-Internship Assessment Task - MERN Stack Full Stack Development
