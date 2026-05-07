@@ -19,7 +19,7 @@ const ListPage = () => {
 
   useEffect(() => {
     fetchUsers(currentPage, searchTerm);
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   const fetchUsers = async (page, search = '') => {
     try {
