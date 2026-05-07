@@ -18,22 +18,21 @@ const ListPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
+    const fetchUsers = async (page, search = '') => {
+      try {
+        setLoading(true);
+        const response = await userAPI.getUsers(page, 10, search);
+        setUsers(response.data.data);
+        setTotalPages(response.data.pagination.totalPages);
+        setTotalUsers(response.data.pagination.totalUsers);
+      } catch (error) {
+        showError('Failed to fetch users');
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchUsers(currentPage, searchTerm);
   }, [currentPage, searchTerm]);
-
-  const fetchUsers = async (page, search = '') => {
-    try {
-      setLoading(true);
-      const response = await userAPI.getUsers(page, 10, search);
-      setUsers(response.data.data);
-      setTotalPages(response.data.pagination.totalPages);
-      setTotalUsers(response.data.pagination.totalUsers);
-    } catch (error) {
-      showError('Failed to fetch users');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleSearch = async (value) => {
     setSearchTerm(value);
@@ -63,7 +62,7 @@ const ListPage = () => {
     try {
       await userAPI.deleteUser(id);
       showSuccess('User deleted successfully');
-      fetchUsers(currentPage, searchTerm);
+      setCurrentPage(1);
     } catch (error) {
       showError('Failed to delete user');
     }
